@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function Home() {
+function App() {
   const [message, setMessage] = useState('');
   const [response, setResponse] = useState('');
 
@@ -33,3 +33,5 @@ export default function Home() {
     </div>
   );
 }
+
+export default App;
