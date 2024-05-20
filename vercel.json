@@ -2,18 +2,22 @@
   "version": 2,
   "builds": [
     {
-      "src": "package.json",
+      "src": "pages/api/*.js",
       "use": "@vercel/node"
     },
     {
-      "src": "pages/**/*",
-      "use": "@vercel/next"
+      "src": "pages/index.js",
+      "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "/api/chatbot"
+      "dest": "/pages/api/chatbot.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/pages/index.js"
     }
   ]
 }
