@@ -21,8 +21,11 @@ export default async function handler(req, res) {
     const prompt = `Here is the relevant information based on your question: ${relevantChunks.join(' ')}`;
 
     const response = await openai.createChatCompletion({
-      model: "gpt-4-turbo",
-      messages: [{ role: "system", content: "You are a helpful assistant." }, { role: "user", content: prompt }],
+      model: 'gpt-4-turbo',
+      messages: [
+        { role: 'system', content: 'You are a helpful assistant.' },
+        { role: 'user', content: prompt },
+      ],
       max_tokens: 100,
     });
 
