@@ -19,7 +19,7 @@ function App() {
 
   return (
     <div>
-      <h1>Maxibot</h1>
+      <h2>Maxibot</h2>
       <textarea
         value={message}
         onChange={(e) => setMessage(e.target.value)}

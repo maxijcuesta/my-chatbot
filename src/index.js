@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App.js'; // Asegúrate de especificar la extensión del archivo
+import App from './App.js'; // Asegúrate de especificar la extensión .js
 import './index.css';
 
 ReactDOM.render(
