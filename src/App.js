@@ -1,25 +1,40 @@
-import { useState } from 'react';
-
+import React, { useState } from 'react';
 function App() {
   const [message, setMessage] = useState('');
   const [response, setResponse] = useState('');
+  const [error, setError] = useState('');
 
   const sendMessage = async () => {
-    const res = await fetch('/api/chatbot', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ message }),
-    });
+    setError('');
+    setResponse('');
+    try {
+      const res = await fetch('/api/chatbot', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message }),
+      });
 
-    const data = await res.json();
-    setResponse(data.response);
+      if (!res.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await res.json();
+      if (data.error) {
+        setError(data.error);
+      } else {
+        setResponse(data.response);
+      }
+    } catch (err) {
+      setError('Failed to fetch response from server');
+      console.error('Error fetching response:', err);
+    }
   };
 
   return (
     <div>
-      <h2>Maxibot</h2>
+      <h1>Maxibot</h1>
       <textarea
         value={message}
         onChange={(e) => setMessage(e.target.value)}
@@ -29,6 +44,7 @@ function App() {
       <div>
         <h2>Response:</h2>
         <p>{response}</p>
+        {error && <p style={{ color: 'red' }}>{error}</p>}
       </div>
     </div>
   );
