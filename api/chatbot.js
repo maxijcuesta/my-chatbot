@@ -1,6 +1,6 @@
-const { Configuration, OpenAIApi } = require('openai');
-const fs = require('fs');
-const path = require('path');
+import { Configuration, OpenAIApi } from 'openai';
+import fs from 'fs';
+import path from 'path';
 
 console.log('Starting chatbot handler...');
 
